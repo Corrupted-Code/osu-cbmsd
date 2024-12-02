@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Osu!CBMSD Tampermonkey
-// @namespace    http://tampermonkey.net/
+// @namespace    http://privatekey.is-a.dev
 // @version      0.1
 // @description  try to take over the world!
 // @author       PrivateKey
