@@ -6,12 +6,8 @@ on:
 
 jobs:
   build-and-publish:
-    name: Build and Publish
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+    name: Build and Publish on Windows
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v3
@@ -48,20 +44,14 @@ jobs:
 
     - name: Build executable with Nuitka
       run: |
-        if [ $RUNNER_OS == 'Linux' ]; then
-          nuitka --standalone --onefile --include-package=cbmsd --enable-plugin=tk-inter main.py
-        elif [ $RUNNER_OS == 'Windows' ]; then
-          nuitka --standalone --onefile --include-package=cbmsd --enable-plugin=tk-inter main.py --windows-icon=icon.ico
-        elif [ $RUNNER_OS == 'macOS' ]; then
-          nuitka --standalone --onefile --include-package=cbmsd --enable-plugin=tk-inter main.py --macos-sign
-        fi
+        nuitka --standalone --onefile --include-package=cbmsd --enable-plugin=tk-inter main.py --windows-icon=icon.ico
 
     - name: Upload executable to release
       uses: svenstaro/upload-release-action@v2
       with:
-        release_name: OSU!CBMSD ${{ env.NEW_VERSION }}
+        release_name: Osu!CBMSD ${{ env.NEW_VERSION }}
         body: Build release version ${{ env.NEW_VERSION }} generated with Nuitka.
         repo_token: ${{ secrets.GIT_TOKEN }}
-        file: ${{ runner.os == 'Windows' && 'main.dist/main.exe' || runner.os == 'macOS' && 'main.dist/main' || 'main.dist/main' }}
-        asset_name: osu-cbmsd.${{ runner.os == 'Windows' && 'exe' || 'dmg' || 'bin' }}
+        file: main.dist/main.exe
+        asset_name: osucbmsd.exe
         overwrite: true
