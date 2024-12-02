@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Osu!CBMSD Alpha</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .form {
+            margin-top: 20px;
+        }
+        .form > * {
+            margin: 10px;
+        }
+        .form > label {
+            display: block;
+        }
+        .form > select {
+            width: 100%;
+            padding: 5px;
+        }
+        .form > button {
+            width: 100%;
+            padding: 10px;
+            background-color: #34A85A;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        let selectedMirror = "";
+        async function getSettings() {
+            const response = await fetch('http://localhost:8081/api/settings', {
+                method: 'GET',
+            });
+            const data = await response.json();
+            selectedMirror = data.mirror;
+            document.querySelector('#mirror').removeAttribute('disabled');
+            document.querySelector('#mirror').value = selectedMirror;
+            document.querySelector('#selected-mirror').innerHTML = selectedMirror;
+        }
+        async function saveSettings() {
+            const response = await fetch('http://localhost:8081/api/settings', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    mirror: document.querySelector('#mirror').value
+                })
+            });
+            const data = await response.json();
+            if (data.Success) {
+                alert('Settings saved');
+                selectedMirror = document.querySelector('#mirror').value;
+                document.querySelector('#selected-mirror').innerHTML = selectedMirror;
+            } else {
+                alert('Failed to save settings');
+            }
+        }
+        getSettings();
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Osu!CBMSD Alpha</h1>
+        <form class="form">
+            <label for="mirror">Mirror (Recommended: <b>catboy.best</b>)</label>
+            <select id="mirror" disabled>
+                <option value="https://catboy.best/d/">catboy.best</option>
+                <option value="https://beatconnect.io/b/">beatconnect.io</option>
+                <option value="https://osu.direct/d/">osu.direct</option>
+            </select>
+            <span id="selected-mirror"></span>
+            <button id="save-button" type="button" onclick="saveSettings()">Save</button>
+        </form>
+    </div>
+</body>
+</html>
+
