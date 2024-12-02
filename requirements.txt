@@ -3,3 +3,4 @@ eel
 uvicorn
 win10toast
 requests
+nuitka
