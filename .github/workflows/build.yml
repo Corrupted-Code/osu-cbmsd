@@ -59,6 +59,6 @@ jobs:
         release_name: Osu!CBMSD ${{ env.NEW_VERSION }}
         body: Build release version ${{ env.NEW_VERSION }} generated with Nuitka.
         repo_token: ${{ secrets.GIT_TOKEN }}
-        file: main.dist/main.exe
+        file: main.exe
         asset_name: osucbmsd.exe
         overwrite: true
