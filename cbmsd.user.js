@@ -3,9 +3,8 @@
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  try to take over the world!
-// @author       You
+// @author       PrivateKey
 // @match        https://osu.ppy.sh/beatmapsets/*
-// @match        https://osu.ppy.sh/home/support
 // @grant        none
 // ==/UserScript==
 
