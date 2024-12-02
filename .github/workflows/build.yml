@@ -36,7 +36,11 @@ jobs:
     - name: Increment version
       id: increment_version
       run: |
-        $CURRENT_VERSION = $env:CURRENT_VERSION
+        if ($env:CURRENT_VERSION) {
+          $CURRENT_VERSION = $env:CURRENT_VERSION
+        } else {
+          $CURRENT_VERSION = "0.0.0"
+        }
         $parts = $CURRENT_VERSION.Split('.')
         $MAJOR = $parts[0]
         $MINOR = $parts[1]
