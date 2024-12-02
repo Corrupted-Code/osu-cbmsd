@@ -51,7 +51,7 @@ jobs:
 
     - name: Build executable with Nuitka
       run: |
-        nuitka --standalone --onefile --include-package=cbmsd --enable-plugin=tk-inter main.py --windows-icon=icon.ico
+        nuitka --standalone --onefile --include-package=cbmsd main.py
 
     - name: Upload executable to release
       uses: svenstaro/upload-release-action@v2
