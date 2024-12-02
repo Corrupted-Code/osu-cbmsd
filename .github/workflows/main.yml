@@ -1,0 +1,67 @@
+name: Build and Publish Release
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-publish:
+    name: Build and Publish
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.x"
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install nuitka
+
+    - name: Get current version
+      id: get_version
+      run: |
+        VERSION_FILE="version.txt"
+        if [ ! -f "$VERSION_FILE" ]; then
+          echo "0.0.0" > $VERSION_FILE
+        fi
+        CURRENT_VERSION=$(cat $VERSION_FILE)
+        echo "CURRENT_VERSION=$CURRENT_VERSION" >> $GITHUB_ENV
+
+    - name: Increment version
+      id: increment_version
+      run: |
+        IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT_VERSION"
+        PATCH=$((PATCH + 1))
+        NEW_VERSION="$MAJOR.$MINOR.$PATCH"
+        echo $NEW_VERSION > version.txt
+        echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+
+    - name: Build executable with Nuitka
+      run: |
+        if [ $RUNNER_OS == 'Linux' ]; then
+          nuitka --standalone --onefile --include-package=cbmsd --enable-plugin=tk-inter main.py
+        elif [ $RUNNER_OS == 'Windows' ]; then
+          nuitka --standalone --onefile --include-package=cbmsd --enable-plugin=tk-inter main.py --windows-icon=icon.ico
+        elif [ $RUNNER_OS == 'macOS' ]; then
+          nuitka --standalone --onefile --include-package=cbmsd --enable-plugin=tk-inter main.py --macos-sign
+        fi
+
+    - name: Upload executable to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        release_name: OSU!CBMSD ${{ env.NEW_VERSION }}
+        body: Build release version ${{ env.NEW_VERSION }} generated with Nuitka.
+        repo_token: ${{ secrets.GIT_TOKEN }}
+        file: ${{ runner.os == 'Windows' && 'main.dist/main.exe' || runner.os == 'macOS' && 'main.dist/main' || 'main.dist/main' }}
+        asset_name: osu-cbmsd.${{ runner.os == 'Windows' && 'exe' || 'dmg' || 'bin' }}
+        overwrite: true
