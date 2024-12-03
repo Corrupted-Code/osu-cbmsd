@@ -3,6 +3,7 @@ Its free open-source project to download maps directly (using catboy.best cloud.
 
 ## How to run?
 Just download it from [releases](https://github.com/Corrupted-Code/osu-cbmsd/releases) or you can run it from source code.
+
 And you need [tampermonkey](https://www.tampermonkey.net/) with our [script](https://github.com/Corrupted-Code/osu-cbmsd/raw/refs/heads/main/cbmsd.user.js) installed.
 
 ## Running
@@ -12,5 +13,4 @@ And you need [tampermonkey](https://www.tampermonkey.net/) with our [script](htt
 
 ## Building
 You can build it using nuitka.
-
 just run ``nuitka --standalone --onefile --include-package=cbmsd main.py`` (with installed nuitka.)
