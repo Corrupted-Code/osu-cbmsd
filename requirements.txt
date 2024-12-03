@@ -2,3 +2,4 @@ fastapi
 uvicorn
 win10toast
 requests
+nuitka
