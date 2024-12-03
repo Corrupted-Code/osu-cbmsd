@@ -4,7 +4,7 @@ Its free open-source project to download maps directly (using catboy.best cloud.
 ## How to run?
 Just download it from [releases](https://github.com/Corrupted-Code/osu-cbmsd/releases) or you can run it from source code.
 
-And you need [tampermonkey](https://www.tampermonkey.net/) with our [script](https://github.com/Corrupted-Code/osu-cbmsd/raw/refs/heads/main/cbmsd.user.js) installed.
+And you need [tampermonkey](https://www.tampermonkey.net/), [violentmonkey](https://chromewebstore.google.com/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag?hl=ru&pli=1) or something like this with our [script](https://github.com/Corrupted-Code/osu-cbmsd/raw/refs/heads/main/cbmsd.user.js) installed.
 
 ## Running
 1. Clone repository (``git clone https://github.com/Corrupted-Code/osu-cbmsd``)
