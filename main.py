@@ -8,5 +8,6 @@ def run_fastapi():
 
 
 threading.Thread(target=run_fastapi).start()
+print("API running at: http://localhost:8081")
 print("Started Osu!CBMSD.")
 
