@@ -12,4 +12,5 @@ And you need [tampermonkey](https://www.tampermonkey.net/) with our [script](htt
 
 ## Building
 You can build it using nuitka.
+
 just run ``nuitka --standalone --onefile --include-package=cbmsd main.py`` (with installed nuitka.)
