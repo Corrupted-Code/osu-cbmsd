@@ -59,7 +59,7 @@
             if (match) {
                 applyChanges();
             }
-        }, 2000);
+        }, 500);
     };
 
     // Check server status before starting URL monitoring
