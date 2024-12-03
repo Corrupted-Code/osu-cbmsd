@@ -5,8 +5,6 @@ toast = ToastNotifier()
 
 #catboy.best mirror is recommended.
 
-mirrors = ["https://beatconnect.io/b/", "https://catboy.best/d/", "https://osu.direct/d/"]
-
 def save_mapset(id, mirror = "https://catboy.best/d/"):
     send_notification("Osu!CBMSD", "Downloading mapset...")
     response = requests.get(mirror + id, stream=True)

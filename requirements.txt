@@ -1,5 +1,4 @@
 fastapi
-eel
 uvicorn
 win10toast
 requests
