@@ -1,5 +1,6 @@
 ## Welcome to the OSU!CBMSD
-Its free open-source project to download maps directly (using catboy.best cloud.)
+Its free open-source project to download maps directly (using catboy.best mirror)
+Or random thing that allowes you download beatmaps fast.
 
 ## How to run?
 Just download it from [releases](https://github.com/Corrupted-Code/osu-cbmsd/releases) or you can run it from source code.
