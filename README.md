@@ -1,4 +1,5 @@
 ## Welcome to the OSU!CBMSD
+[![wakatime](https://wakatime.com/badge/github/Corrupted-Code/osu-cbmsd.svg)](https://wakatime.com/badge/github/Corrupted-Code/osu-cbmsd)
 Its free open-source project to download maps directly (using catboy.best mirror)
 Or random thing that allowes you download beatmaps fast.
 
