@@ -10,8 +10,8 @@ And you need [tampermonkey](https://www.tampermonkey.net/), [violentmonkey](http
 ## Running
 1. Clone repository (``git clone https://github.com/Corrupted-Code/osu-cbmsd``)
 2. Install python libs (``pip install -r requirements.txt``)
-3. Run the code. (``python main.py``)
+3. Run the code. (``python cbmsd.py``)
 
 ## Building
 You can build it using nuitka.
-just run ``nuitka --standalone --onefile --include-package=cbmsd main.py`` (with installed nuitka.)
+just run ``nuitka --standalone --onefile --include-package=cbmsd cbmsd.py`` (with installed nuitka.)
